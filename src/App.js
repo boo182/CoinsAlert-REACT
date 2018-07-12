@@ -63,13 +63,13 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.fetcher('/coins', 'coins');
+    this.fetcher(`${URL}/coins`, 'coins');
     this.coinAlert();
-    this.fetcher('/alert', 'alerts');
-    this.fetcher('/threshold', 'thresholds');
+    this.fetcher(`${URL}/alert`, 'alerts');
+    this.fetcher(`${URL}/threshold`, 'thresholds');
     this.coinFetcher = Rx.interval(120000)
       .subscribe(() => {
-        this.fetcher('/coins', 'coins');
+        this.fetcher(`${URL}/coins`, 'coins');
         this.coinAlert();
       });
   }
@@ -135,7 +135,7 @@ class App extends Component {
     .then(res => res.json())
     .then(res => this.setState({ loading: false }))
     .catch(err => console.log(err));
-    this.fetcher('/coins', 'coins');    
+    this.fetcher(`${URL}/coins`, 'coins');    
   }
 
   fetcher = (url, state) => {
