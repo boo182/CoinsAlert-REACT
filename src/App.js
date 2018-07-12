@@ -6,7 +6,7 @@ import CryptoList from './Components/CryptoList';
 import { Table, Button, Icon } from 'antd';
 import 'antd/dist/antd.css';
 import * as Rx from 'rxjs';
-
+const URL = "https://secret-savannah-72594.herokuapp.com";
 class App extends Component {
   state = {
     loading: false,
@@ -80,7 +80,7 @@ class App extends Component {
 
   onDelete = (id) => {
     this.setState({ loading: true });    
-    fetch(`/threshold/${id}`, { method: 'DELETE'})
+    fetch(`${URL}/threshold/${id}`, { method: 'DELETE'})
     .then(res => res.json())
     .then(res => this.setState({ loading: false }))
     .catch(err => console.log(err));
@@ -88,7 +88,7 @@ class App extends Component {
 
   removeCrypto = (text, record) => (e) => {
     this.setState({ loading: true });
-    fetch(`/coins/${text.crypto}`, { 
+    fetch(`${URL}/coins/${text.crypto}`, { 
       method: 'DELETE',
     })
     .then(res => res.json())
@@ -100,7 +100,7 @@ class App extends Component {
   onMailEnabled = (id, isEnabled) => e => {
     e.preventDefault();
     this.setState({ loading: true });
-    fetch(`/threshold`, { 
+    fetch(`${URL}/threshold`, { 
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -117,12 +117,12 @@ class App extends Component {
 
   }
   getAlertsByThresholds = (id) => {
-    this.fetcher(`/alert/${id}`, 'alertsByThresholds');
+    this.fetcher(`${URL}/alert/${id}`, 'alertsByThresholds');
   }
 
   addToTable = newCrypto => {
     this.setState({ loading: true });
-    fetch(`/coins/add`, { 
+    fetch(`${URL}/coins/add`, { 
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -175,7 +175,7 @@ class App extends Component {
 
   alert = (id, alertedAt) => {
     this.setState({ loading: true });
-    fetch('/alert', {
+    fetch(`${URL}/alert`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -192,12 +192,12 @@ class App extends Component {
   }
 
   getAlerts = () => {
-    this.fetcher('/alert', 'alerts');
+    this.fetcher(`${URL}/alert`, 'alerts');
   }
 
   setThreshold = (values) => {
     this.setState({ loading: true });
-    fetch('/threshold', {
+    fetch(`${URL}/threshold`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -217,7 +217,7 @@ class App extends Component {
   onEmptyAlerts = (id) => e => {
     e.preventDefault();
     this.setState({ loading: true });
-    fetch(`/alert/${id}`, { method: 'DELETE'})
+    fetch(`${URL}/alert/${id}`, { method: 'DELETE'})
     .then(res => res.json())
     .then(res => this.setState({ loading: false }))
     .catch(err => console.log(err));

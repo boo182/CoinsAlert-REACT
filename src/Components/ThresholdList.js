@@ -18,7 +18,7 @@ export default class ThresholdList extends Component {
   }
   componentWillUpdate(nextProps) {
     if(nextProps.update !== this.props.update) {
-      this.props.fetch('/threshold', 'thresholds');
+      this.props.fetch(`${URL}/threshold`, 'thresholds');
     }
   }
 
