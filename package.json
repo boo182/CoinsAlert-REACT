@@ -18,5 +18,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:1337"
+  "proxy": "https://secret-savannah-72594.herokuapp.com"
 }
